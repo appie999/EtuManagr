@@ -1,11 +1,11 @@
 package model;
 
-public class Etudiant {
+public class Student {
 
     private int id , date_de_naissance ;
     private String nom , prenom , email;
 
-    public Etudiant(int id, int date_de_naissance, String nom, String prenom, String email) {
+    public Student(int id, int date_de_naissance, String nom, String prenom, String email) {
         this.id = id;
         this.date_de_naissance = date_de_naissance;
         this.nom = nom;
