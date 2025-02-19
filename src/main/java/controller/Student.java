@@ -9,21 +9,36 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/create")
+@WebServlet("/cours")
 public class Student extends HttpServlet {
 
-    //etudient
-    private StudentDao etudientDao;
-    public void init() {
-        etudientDao = new StudentDao();
+    private StudentDao studentDao;
+
+
+
+    @Override
+    public void init(){
+        studentDao = new StudentDao();
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    }
+
+
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String nom = req.getParameter("nom");
         String prenom = req.getParameter("prenom");
         String email = req.getParameter("email");
+        int date_de_naissance = Integer.parseInt("date_de_naissance");
+
+
+        Student student = new Student();
+        StudentDao studentDao = new StudentDao();
+        StudentDao.createStudent(student);
+
+
+
     }
+
+
 }

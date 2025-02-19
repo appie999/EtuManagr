@@ -1,5 +1,7 @@
 package model;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class Student {
 
     private int id , date_de_naissance ;
