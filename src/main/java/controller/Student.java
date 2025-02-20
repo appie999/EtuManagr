@@ -15,14 +15,10 @@ public class Student extends HttpServlet {
     private StudentDao studentDao;
 
 
-
     @Override
     public void init(){
         studentDao = new StudentDao();
     }
-
-
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,12 +27,5 @@ public class Student extends HttpServlet {
         String email = req.getParameter("email");
         int date_de_naissance = Integer.parseInt("date_de_naissance");
 
-
-
-
-
-
     }
-
-
 }
