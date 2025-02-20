@@ -1,45 +1,41 @@
 package dao;
 
-import controller.Student;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class StudentDao {
-    private static Connection conn;
-    public StudentDao() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Etudiant", "root", "");
-            if (this.conn == null) {
-                throw new SQLException("Failed to establish database connection !");
+    private static final String HOST = "localhost";
+    private static final int PORT = 3306;
+    private static final String DB_NAME = "student";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
+
+    private static Connection connection;
+
+    // Singleton pattern to ensure only one connection is used
+    public static Connection getConnection() {
+        if (connection == null) {
+            try {
+                // Load MySQL JDBC Driver (optional for newer JDBC versions)
+                Class.forName("com.mysql.cj.jdbc.Driver");
+
+                // Establish connection
+                connection = DriverManager.getConnection(
+                        String.format("jdbc:mysql://%s:%d/%s", HOST, PORT, DB_NAME),
+                        USERNAME,
+                        PASSWORD
+                );
+                System.out.println("Connected to the database successfully!");
+
+            } catch (ClassNotFoundException e) {
+                System.err.println("MySQL JDBC Driver not found!");
+                e.printStackTrace();
+            } catch (SQLException se) {
+                System.err.println("Database connection failed!");
+                se.printStackTrace();
             }
-
-            try(Statement statement = conn.createStatement()) {
-                String createTableSQL = "CREATE TABLE IF NOT EXISTS students ("+"id INT AUTO_INCREMENT PRIMARY KEY, "
-                        +"nom VARCHAR(50) NOT NULL, "
-                        +"prenom VARCHAR(50) NOT NULL, "
-                        +"email VARCHAR(50) NOT NULL, "
-                        +"date_de_naissance INT NOT NULL, " +");";
-                statement.executeUpdate(createTableSQL);
-                System.out.println("Table 'students' created successfully !");
-            }
-        } catch (ClassNotFoundException e) {
-            System.err.println("MySQL JDBC Driver class not found !");
-            e.printStackTrace();
-        }catch (SQLException e) {
-            System.err.println("Database connection error !" + e.getMessage());
-            e.printStackTrace();
         }
-    }
-
-    public static void createStudent(Student student) {
-        if (conn == null){
-            System.out.println("Database connection is not initialized !");
-            return;
-        }
-
+        return connection;
     }
 }

@@ -32,9 +32,7 @@ public class Student extends HttpServlet {
         int date_de_naissance = Integer.parseInt("date_de_naissance");
 
 
-        Student student = new Student();
-        StudentDao studentDao = new StudentDao();
-        StudentDao.createStudent(student);
+
 
 
 
