@@ -1,16 +1,21 @@
 package model;
 
 public class Student {
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String dateNaiss;
 
-    private int id , date_de_naissance ;
-    private String nom , prenom , email;
+    public Student() {
+    }
 
-    public Student(int id, int date_de_naissance, String nom, String prenom, String email) {
-        this.id = id;
-        this.date_de_naissance = date_de_naissance;
-        this.nom = nom;
-        this.prenom = prenom;
+    public Student(String firstName, String lastName, String email, String dateNaiss) {
+
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
+        this.dateNaiss = dateNaiss;
     }
 
     public int getId() {
@@ -21,28 +26,20 @@ public class Student {
         this.id = id;
     }
 
-    public int getDate_de_naissance() {
-        return date_de_naissance;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setDate_de_naissance(int date_de_naissance) {
-        this.date_de_naissance = date_de_naissance;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getNom() {
-        return nom;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -51,5 +48,13 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getDateNaiss() {
+        return dateNaiss;
+    }
+
+    public void setDateNaiss(String dateNaiss) {
+        this.dateNaiss = dateNaiss;
     }
 }
